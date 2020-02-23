@@ -1,7 +1,7 @@
 package by.training.task3.parser.impl;
 
-import by.training.task3.entity.impl.Symbol;
-import by.training.task3.entity.impl.TextComponentType;
+import by.training.task3.entity.impl.TextSymbol;
+import by.training.task3.enums.TextComponentType;
 import by.training.task3.entity.impl.TextComposite;
 import by.training.task3.parser.Parser;
 
@@ -19,7 +19,7 @@ public class WordParser implements Parser {
         String symbol;
         while (symbolMatcher.find()) {
             symbol = symbolMatcher.group();
-            composite.add(new Symbol(symbol));
+            composite.add(new TextSymbol(symbol));
         }
         return composite;
     }

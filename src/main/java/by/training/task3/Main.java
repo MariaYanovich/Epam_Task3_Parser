@@ -1,11 +1,11 @@
 package by.training.task3;
 
-import by.training.task3.entity.impl.TextComposite;
-import by.training.task3.parser.Parser;
-import by.training.task3.parser.impl.TextParser;
-import by.training.task3.reader.TextReaderFromFile;
+import by.training.task3.exception.CalculateException;
+import by.training.task3.util.Calculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
 
 // Разобранный текст должен быть представлен в виде объекта, содержащего, например,
 // абзацы, предложения, лексемы, слова, символы. Лексема – часть текста, ограниченная пробельными символами.
@@ -25,13 +25,16 @@ public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class.getName());
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, CalculateException {
 
-        TextReaderFromFile textReaderFromFile = new TextReaderFromFile();
-        TextComposite textComponents;
-        Parser parser;
-        parser = new TextParser();
-        textComponents = parser.parse(textReaderFromFile.getTextStr());
-        LOGGER.debug(textComponents.getTextComponentsList());
+//        TextReaderFromFile textReaderFromFile = new TextReaderFromFile();
+//        TextComposite textComponents;
+//        Parser parser;
+//        parser = new TextParser();
+//        textComponents = parser.parse(textReaderFromFile.getTextStr());
+//        LOGGER.debug(textComponents.getTextComponentsList());
+
+        Calculator calculator = new Calculator("(4^5|1&2<<(2|5>>2&71))|1200");
+        System.out.println(calculator.calculate());
     }
 }

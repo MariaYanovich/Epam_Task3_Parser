@@ -2,6 +2,7 @@ package by.training.task3.entity.impl;
 
 
 import by.training.task3.entity.Component;
+import by.training.task3.enums.TextComponentType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +20,6 @@ public class TextComposite implements Component {
     @Override
     public void add(Component component) {
         textComponentsList.add(component);
-    }
-
-    @Override
-    public void remove(Component component) {
-        textComponentsList.remove(component);
-    }
-
-    @Override
-    public Component getElement(int index) {
-        return textComponentsList.get(index);
     }
 
     public TextComponentType getTextComponentType() {
