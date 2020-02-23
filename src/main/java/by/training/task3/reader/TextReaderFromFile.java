@@ -1,0 +1,42 @@
+package by.training.task3.reader;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Objects;
+import java.util.Scanner;
+
+public class TextReaderFromFile {
+    private static final Logger LOGGER = LogManager.getLogger(TextReaderFromFile.class.getName());
+
+    private String textStr;
+    private File file;
+
+    public TextReaderFromFile() {
+        ClassLoader classLoader = this.getClass().getClassLoader();
+        try {
+            this.textStr = "";
+            this.file = new File(Objects.requireNonNull(classLoader.
+                    getResource("text.txt")).getFile());
+            readTextFromFile();
+        } catch (NullPointerException e) {
+            LOGGER.error("Error in reading from txt file");
+        }
+    }
+
+    private void readTextFromFile() {
+        try (Scanner sc = new Scanner(file)) {
+            while (sc.hasNextLine()) {
+                textStr = textStr.concat(sc.nextLine()).concat("\n");
+            }
+        } catch (FileNotFoundException e) {
+            LOGGER.error("Can't find txt file");
+        }
+    }
+
+    public String getTextStr() {
+        return textStr;
+    }
+}
