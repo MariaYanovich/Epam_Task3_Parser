@@ -2,6 +2,7 @@ package by.training.task3.parser;
 
 import by.training.task3.enums.TextComponentType;
 import by.training.task3.entity.impl.TextComposite;
+import by.training.task3.exception.CalculateException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
