@@ -1,8 +1,5 @@
 package by.training.task3.exception;
 
-import java.io.PrintStream;
-import java.io.PrintWriter;
-
 public class CalculateException extends Exception {
     public CalculateException() {
         super();

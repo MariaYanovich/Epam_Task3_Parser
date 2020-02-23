@@ -1,8 +1,8 @@
 package by.training.task3.parser.impl;
 
+import by.training.task3.entity.impl.TextComposite;
 import by.training.task3.entity.impl.TextSymbol;
 import by.training.task3.enums.TextComponentType;
-import by.training.task3.entity.impl.TextComposite;
 import by.training.task3.parser.Parser;
 
 import java.util.regex.Matcher;

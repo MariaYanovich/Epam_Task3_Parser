@@ -19,7 +19,6 @@ public class ExpressionParser implements Parser {
 
     @Override
     public TextComposite parse(String textToParse) {
-
         TextComposite composite = new TextComposite(TextComponentType.TEXT);
         Pattern pattern = Pattern.compile(EXPRESSION_REGEX);
         Matcher matcher = pattern.matcher(textToParse);
