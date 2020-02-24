@@ -5,14 +5,14 @@ import by.training.task3.exception.CalculateException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class Calculator {
+public class ExpressionCalculator {
     private String expressionStr;
     private Deque<Integer> resultDeque;
     private Deque<Character> operationsDeque;
     private int i;
     private char symbol;
 
-    public Calculator(String expressionStr) {
+    public ExpressionCalculator(String expressionStr) {
         this.expressionStr = expressionStr;
         operationsDeque = new ArrayDeque<>();
         resultDeque = new ArrayDeque<>();
@@ -20,7 +20,7 @@ public class Calculator {
     }
 
 
-    public int calculate() throws CalculateException {
+    public int calculateExpression() throws CalculateException {
         replaceOperatorsInExpression();
         while (i < expressionStr.length()) {
             symbol = expressionStr.charAt(i);
@@ -45,7 +45,7 @@ public class Calculator {
 
     private void pushDigitToResultDeque() {
         StringBuilder number = new StringBuilder();
-        while (i < expressionStr.length() && isDigit(expressionStr.charAt(i))) {
+        while (i < expressionStr.length() && isDigit(symbol = expressionStr.charAt(i))) {
             number.append(symbol);
             i++;
         }
@@ -68,7 +68,7 @@ public class Calculator {
 
     private void doIfSymbolIsCloseBracket() throws CalculateException {
         while (operationsDeque.peek() != null && operationsDeque.peek() != '(') {
-            calculate(operationsDeque.pop(), resultDeque);
+            calculateExpression(operationsDeque.pop(), resultDeque);
         }
         operationsDeque.pop();
     }
@@ -76,14 +76,14 @@ public class Calculator {
     private void doIfSymbolNotCloseBracket() throws CalculateException {
         while (!operationsDeque.isEmpty() && operationsDeque.peek() != '(' &&
                 getPriority(symbol) > getPriority(operationsDeque.peek())) {
-            calculate(operationsDeque.pop(), resultDeque);
+            calculateExpression(operationsDeque.pop(), resultDeque);
         }
         operationsDeque.push(symbol);
     }
 
     private void doWhileOperationsDequeIsNotEmpty() throws CalculateException {
         while (!operationsDeque.isEmpty()) {
-            calculate(operationsDeque.pop(), resultDeque);
+            calculateExpression(operationsDeque.pop(), resultDeque);
         }
     }
 
@@ -91,7 +91,7 @@ public class Calculator {
         return symbol >= '0' && symbol <= '9';
     }
 
-    private void calculate(char operation, Deque<Integer> result) throws CalculateException {
+    private void calculateExpression(char operation, Deque<Integer> result) throws CalculateException {
         int firstNumber;
         int secondNumber;
         switch (operation) {

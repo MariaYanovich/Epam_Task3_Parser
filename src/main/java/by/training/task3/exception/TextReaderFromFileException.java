@@ -1,6 +1,6 @@
 package by.training.task3.exception;
 
-public class TextReaderFromFileException extends Exception{
+public class TextReaderFromFileException extends Exception {
     public TextReaderFromFileException() {
         super();
     }
