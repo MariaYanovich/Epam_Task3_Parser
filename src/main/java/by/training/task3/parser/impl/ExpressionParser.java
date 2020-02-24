@@ -5,11 +5,14 @@ import by.training.task3.enums.TextComponentType;
 import by.training.task3.exception.CalculateException;
 import by.training.task3.parser.Parser;
 import by.training.task3.util.Calculator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ExpressionParser implements Parser {
+    private static final Logger LOGGER = LogManager.getLogger(ExpressionParser.class.getName());
     public static final String EXPRESSION_REGEX = "(?m)(~|~\\(*|\\(*~|\\()?\\d+(\\.\\d+)?(( *\\)* *)([-+*/&|^]|<<|>>) *~* *\\(* *~* *\\d+(\\.\\d+)?\\)*)+";
     private Parser nextParser;
 
@@ -29,7 +32,7 @@ public class ExpressionParser implements Parser {
             try {
                 expressionValue = calculator.calculate();
             } catch (CalculateException e) {
-                e.printStackTrace();
+              LOGGER.error("Error in calculating number");
             }
             textToParse = textToParse.replace(expressionString, String.valueOf(expressionValue));
         }

@@ -45,7 +45,7 @@ public class Calculator {
 
     private void pushDigitToResultDeque() {
         StringBuilder number = new StringBuilder();
-        while (i < expressionStr.length() && isDigit(symbol = expressionStr.charAt(i))) {
+        while (i < expressionStr.length() && isDigit(expressionStr.charAt(i))) {
             number.append(symbol);
             i++;
         }

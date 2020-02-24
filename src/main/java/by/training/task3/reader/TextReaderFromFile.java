@@ -1,5 +1,6 @@
 package by.training.task3.reader;
 
+import by.training.task3.exception.TextReaderFromFileException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +15,7 @@ public class TextReaderFromFile {
     private String textStr;
     private File file;
 
-    public TextReaderFromFile() {
+    public TextReaderFromFile() throws TextReaderFromFileException {
         ClassLoader classLoader = this.getClass().getClassLoader();
         try {
             this.textStr = "";
@@ -23,16 +24,18 @@ public class TextReaderFromFile {
             readTextFromFile();
         } catch (NullPointerException e) {
             LOGGER.error("Error in reading from txt file");
+            throw new TextReaderFromFileException();
         }
     }
 
-    private void readTextFromFile() {
+    private void readTextFromFile() throws TextReaderFromFileException {
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
                 textStr = textStr.concat(sc.nextLine()).concat("\n");
             }
         } catch (FileNotFoundException e) {
             LOGGER.error("Can't find txt file");
+            throw new TextReaderFromFileException();
         }
     }
 
